@@ -1,19 +1,23 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import MainContext from '../context/MainContext';
-import Carousel from './Carousel';
-import ButtonRecipeDetails from './ButtonRecipeDetails';
 import LocalStorageContext from '../context/LocalStorageContext';
 import notFavorited from '../images/whiteHeartIcon.svg';
 import favorited from '../images/blackHeartIcon.svg';
+import '../style/RecipeInProgress.css';
 
-function RecipeDetails() {
+const copy = require('clipboard-copy');
+
+function DrinksInProgress() {
   const { functions } = useContext(LocalStorageContext);
   const { detailsFetch } = useContext(MainContext);
   const [isShared, setIsShared] = useState(false);
 
-  const whiteHeart = <img src={ notFavorited } data-testid="favorite-btn" alt="share" />;
-  const blackHeart = <img src={ favorited } data-testid="favorite-btn" alt="share" />;
+  const history = useHistory();
+
+  const whiteHeart = <img src={ notFavorited } data-testid="favorite-btn" alt="addFav" />;
+  const blackHeart = <img src={ favorited } data-testid="favorite-btn" alt="rmvFav" />;
 
   function getItens() {
     let entries = [];
@@ -35,69 +39,38 @@ function RecipeDetails() {
     return combine;
   }
 
+  const ingredients = getItens().filter((el) => el.length > 2);
+
   function handleClickShare() {
-    navigator.clipboard.writeText(window.location.href);
+    const MINUS_TWELVE = -12;
+    copy(window.location.href.slice(0, MINUS_TWELVE));
     setIsShared(true);
+  }
+
+  function handleClickFinish(recipe) {
+    functions.removeInProgress('drinks', recipe.idDrink);
+    const recipeTags = recipe.strTags ? recipe.strTags.split(',') : [];
+    const tags = recipeTags.length === 0 ? [] : recipeTags;
+
+    const doneDate = new Date().toISOString();
+
+    const doneRecipe = {
+      id: recipe.idDrink,
+      type: 'drink',
+      nationality: '',
+      category: recipe.strCategory,
+      alcoholicOrNot: recipe.strAlcoholic,
+      name: recipe.strDrink,
+      image: recipe.strDrinkThumb,
+      doneDate,
+      tags,
+    };
+    functions.addDoneRecipe(doneRecipe);
+    history.push('/done-recipes');
   }
 
   return (
     <div>
-      {
-        detailsFetch.dataValue.meals && detailsFetch.dataValue.meals.map((item) => (
-          <div key={ item.strMeal }>
-            <button
-              data-testid="share-btn"
-              onClick={ handleClickShare }
-            >
-              <img src={ shareIcon } alt="share" />
-            </button>
-            <button
-              onClick={ () => functions.handleFavorite({
-                id: item.idMeal,
-                type: 'meal',
-                nationality: item.strArea,
-                category: item.strCategory,
-                alcoholicOrNot: '',
-                name: item.strMeal,
-                image: item.strMealThumb,
-              }) }
-            >
-              {functions.isFavoriteRecipe(item.idMeal) ? blackHeart : whiteHeart}
-            </button>
-            {
-              isShared && <small>Link copied!</small>
-            }
-            <img
-              data-testid="recipe-photo"
-              src={ item.strMealThumb }
-              alt={ item.strMeal }
-            />
-            <h2 data-testid="recipe-title">{ item.strMeal }</h2>
-            <h4 data-testid="recipe-category">{ item.strCategory }</h4>
-            {
-              getItens().map((element, index) => (
-                <p
-                  key={ `${element}${index}` }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {
-                    ` ${element}`
-                  }
-                </p>
-              ))
-            }
-            <p data-testid="instructions">{item.strInstructions}</p>
-            <iframe
-              data-testid="video"
-              title={ item.strMeal }
-              width="420"
-              height="315"
-              src={ item.strYoutube }
-            />
-          </div>
-        ))
-      }
-
       {
         detailsFetch.dataValue.drinks && detailsFetch.dataValue.drinks.map((item) => (
           <div key={ item.strDrink }>
@@ -131,16 +104,31 @@ function RecipeDetails() {
             <h2 data-testid="recipe-title">{ item.strDrink }</h2>
             <h4 data-testid="recipe-category">{ item.strAlcoholic }</h4>
             {
-              getItens().map((element, index) => (
-                <p
-                  key={ `${element}${index}` }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {
-                    ` ${element}`
-                  }
-                </p>
-              ))
+              ingredients.map((element, index) => {
+                const { idDrink } = item;
+                const checked = functions.isAddedIngredient('drinks', idDrink, element);
+                return (
+                  <label
+                    className={ checked ? 'line-through' : '' }
+                    htmlFor={ `${element}${index}` }
+                    data-testid={ `${index}-ingredient-step` }
+                    key={ `${element}${index}` }
+                  >
+                    {
+                      ` ${element}`
+                    }
+                    <input
+                      type="checkbox"
+                      name={ `${element}${index}` }
+                      id={ `${element}${index}` }
+                      checked={ checked }
+                      onChange={ () => {
+                        functions.handleIngredient('drinks', idDrink, element);
+                      } }
+                    />
+                  </label>
+                );
+              })
             }
             <p data-testid="instructions">{item.strInstructions}</p>
             <iframe
@@ -150,13 +138,18 @@ function RecipeDetails() {
               height="315"
               src={ item.strYoutube }
             />
+            <button
+              data-testid="finish-recipe-btn"
+              disabled={ !functions.isDoneRecipe('drinks', item.idDrink, ingredients) }
+              onClick={ () => { handleClickFinish(item); } }
+            >
+              Finalizar Receita
+            </button>
           </div>
         ))
       }
-      <Carousel />
-      <ButtonRecipeDetails />
     </div>
   );
 }
 
-export default RecipeDetails;
+export default DrinksInProgress;

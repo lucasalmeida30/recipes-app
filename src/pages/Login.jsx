@@ -20,7 +20,6 @@ function Login() {
             value={ emailInput.value }
             onChange={ emailInput.handleChange }
           />
-
           <input
             className="input-password-login"
             data-testid="password-input"
