@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import MainContext from '../context/MainContext';
+import '../style/Category.css';
 
 function CategoryButtons() {
   const { categoryFetch, filterFetch } = useContext(MainContext);
@@ -20,26 +22,28 @@ function CategoryButtons() {
   }
 
   return (
-    <div>
-      <button
+    <div className="category">
+      <Link
+        className="button-category button-all"
         data-testid="All-category-filter"
         onClick={ () => filterFetch.setDataValue([]) }
       >
         All
-      </button>
+      </Link>
       {dataValue.meals && (
         dataValue.meals.slice(0, NUMBER5).map((meal, index) => {
           const { strCategory } = meal;
           return (
             <div key={ `${strCategory}${index}` }>
-              <button
+              <Link
+                className="button-category"
                 data-testid={ `${strCategory}-category-filter` }
                 onClick={
                   () => toggleFilterMeal(strCategory, URLMEAL)
                 }
               >
                 {strCategory}
-              </button>
+              </Link>
             </div>
           );
         })

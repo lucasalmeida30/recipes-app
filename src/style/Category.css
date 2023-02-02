@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.category {
+    display: flex;
+    margin-top: 35px;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 7px;
+    width: 290px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.button-category {
+    text-decoration: none;
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    color: #797D86;
+    padding: 7px;
+    margin-right: 0.005px;
+    border: 0.517989px solid #B1B1B1;
+}
+
+.button-category:hover {
+    background-color: #FCC436;
+    color: white;
+}
+
+.button-all {
+    text-align: center;
+    height: 27.25px;
+    margin-top: 0.5px;
+}
