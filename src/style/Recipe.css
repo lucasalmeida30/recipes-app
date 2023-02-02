@@ -1,0 +1,44 @@
+.card-recipe {
+    width: 294px;
+    border: 0.517989px solid #B1B1B1;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.recipe-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container-recipe {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-recipe {
+    width: 293.35px;
+    height: 264.85px;
+}
+
+.title-recipe {
+  text-decoration: none;
+  font-family: ' Epilogue' , sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #1A1B1C;
+  margin-left: 12px;
+  margin-top: 8px;
+}
+
+.link-title {
+  text-decoration: none;
+}

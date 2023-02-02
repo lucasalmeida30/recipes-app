@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import imgProfile from '../images/profileIcon.svg';
 import imgSearch from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
+import '../style/Header.css';
 
 function Header() {
   const [inputDisabled, setInputDisabled] = useState(false);
@@ -25,31 +26,41 @@ function Header() {
   }
 
   return (
-    <div>
-      <Link to="/profile">
-        <img
-          src={ imgProfile }
-          alt="profile"
-          data-testid="profile-top-btn"
-        />
-      </Link>
+    <div className="container-header">
+      <div className="main-header">
+        <div className="title-recipes">
+          <h4>Recipes</h4>
+          <h6>app</h6>
+        </div>
+        <Link to="/profile">
+          <img
+            className="img-profile"
+            src={ imgProfile }
+            alt="profile"
+            data-testid="profile-top-btn"
+          />
+        </Link>
 
-      {
-        (pathname === '/meals' || pathname === '/drinks') && (
-          <button onClick={ () => setInputDisabled(!inputDisabled) }>
-            <img
-              src={ imgSearch }
-              alt="search"
-              data-testid="search-top-btn"
-            />
-          </button>
-        )
-      }
-      <h1 data-testid="page-title">{handleTitle()}</h1>
+        {
+          (pathname === '/meals' || pathname === '/drinks') && (
+            <Link onClick={ () => setInputDisabled(!inputDisabled) }>
+              <img
+                className="img-search"
+                src={ imgSearch }
+                alt="search"
+                data-testid="search-top-btn"
+              />
+            </Link>
+          )
+        }
 
-      {
-        inputDisabled && <SearchBar />
-      }
+      </div>
+      <div className="search-header">
+        <h1 className="title-header" data-testid="page-title">{handleTitle()}</h1>
+        {
+          inputDisabled && <SearchBar />
+        }
+      </div>
     </div>
   );
 }
