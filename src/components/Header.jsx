@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import imgProfile from '../images/profileIcon.svg';
 import imgSearch from '../images/searchIcon.svg';
+import imgMeal from '../images/utensils-icon.svg';
+import imgBurguer from '../images/burguerIcon.svg';
 import SearchBar from './SearchBar';
 import '../style/Header.css';
 
@@ -56,6 +58,10 @@ function Header() {
 
       </div>
       <div className="search-header">
+        <img
+          src={ imgBurguer }
+          alt="imgBurguer"
+        />
         <h1 className="title-header" data-testid="page-title">{handleTitle()}</h1>
         {
           inputDisabled && <SearchBar />
