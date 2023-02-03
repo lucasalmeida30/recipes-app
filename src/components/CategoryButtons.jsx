@@ -89,7 +89,7 @@ function CategoryButtons() {
           return (
             <div
               key={ `${strCategory}${index}` }
-              className="category-btn taller"
+              className="category-btn"
               onClick={ () => toggleFilterMeal(strCategory, URLDRINK) }
               role="button"
             >

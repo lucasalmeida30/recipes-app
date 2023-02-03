@@ -9,14 +9,8 @@
 .category-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 360px;
-  /* border-radius: 4px; */
-  /* height: 30px; */
-  /* margin-left: 10px; */
-  /* margin-right: 7px; */
-  /* margin-top: 35px; */
-  /* width: 290px; */
 }
 
 .options-img {

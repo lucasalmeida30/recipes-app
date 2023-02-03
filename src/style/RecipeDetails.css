@@ -1,0 +1,97 @@
+@import 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+@import 'https://fonts.googleapis.com/css2?family=Epilogue:wght@200;600;900&display=swap';
+@import url('https://css.gg/share.css');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.details-container {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.img-header {
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+}
+
+.recipe-name-container {
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 10px;
+	height: 40px;
+	padding: 0px 10px;
+	position: absolute;
+	top: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.recipe-name {
+	font-size: 25px;
+	line-height: 30px;
+	font-weight: 500;
+	font-family: Epilogue, sans-serif;
+	color: #f1f1f1;
+}
+
+.btn-container {
+	background-color: #fcc436 !important;
+	width: 100%;
+	height: 70px;
+	display: flex !important;
+	justify-content: space-around !important;
+	margin-top: 0.1px;
+	margin-bottom: 10px !important;
+	border-top-right-radius: 0 !important;
+	border-top-left-radius: 0 !important;
+}
+
+.shared {
+	background-color: rgba(252,196,54,0.7);
+	width: 98%;
+	height: 18px;
+	text-align: center;
+	border-radius: 50px;
+}
+
+.font-epilogue {
+	font-family: Epilogue, sans-serif;
+}
+
+.ingredients-container {
+	width: 95%;
+}
+
+.details-heading {
+	font-size: 30px;
+	font-weight: 500;
+	padding-left: 5px;
+	margin: 10px 0;
+}
+
+.ingredients {
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 15px 20px !important;
+}
+
+.video {
+	width: 100%;
+}
+
+.start-finish-btn {
+	background-color: #fcc436;
+	width: 95%;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}

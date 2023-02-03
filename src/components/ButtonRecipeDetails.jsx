@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import LocalStorageContext from '../context/LocalStorageContext';
 import MainContext from '../context/MainContext';
+import '../style/RecipeDetails.css';
 import '../style/ButtonRecipeDetails.css';
 
 function ButtonRecipeDetails() {
@@ -27,15 +28,12 @@ function ButtonRecipeDetails() {
     return false;
   }
 
-  // favoriteRecipes
-
   return (
-    <div>
+    <div className="start-finish-btn">
       {
         (detailsFetch.dataValue.meals && isDone()) && (
           <Link
             to={ `/meals/${id}/in-progress` }
-            className="btn-recipe-details"
             data-testid="start-recipe-btn"
           >
             { inProgress() ? 'Continue Recipe' : 'Start Recipe'}
@@ -46,7 +44,6 @@ function ButtonRecipeDetails() {
         (detailsFetch.dataValue.drinks && isDone()) && (
           <Link
             to={ `/drinks/${id}/in-progress` }
-            className="btn-recipe-details"
             data-testid="start-recipe-btn"
           >
             { inProgress() ? 'Continue Recipe' : 'Start Recipe'}
