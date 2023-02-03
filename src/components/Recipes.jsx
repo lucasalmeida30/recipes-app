@@ -17,7 +17,7 @@ function Recipes() {
           return (
             <div className="container-recipe" key={ `${strMeal}${index}` }>
               <div
-                className="card-recipe"
+                className="box"
                 data-testid={ `${index}-recipe-card` }
               >
                 <Link to={ `/meals/${idMeal}` } className="link-title">
@@ -45,7 +45,7 @@ function Recipes() {
           return (
             <div className="container-recipe" key={ `${strMeal}${index}` }>
               <div
-                className="card-recipe"
+                className="box"
                 data-testid={ `${index}-recipe-card` }
               >
                 <Link to={ `/meals/${idMeal}` }>
@@ -71,15 +71,26 @@ function Recipes() {
         dataValue.drinks.slice(0, NUMBER12).map((meal, index) => {
           const { strDrink, strDrinkThumb, idDrink } = meal;
           return (
-            <div key={ `${strDrink}${index}` } data-testid={ `${index}-recipe-card` }>
-              <Link to={ `/drinks/${idDrink}` }>
-                <h2 data-testid={ `${index}-card-name` }>{strDrink}</h2>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ strDrinkThumb }
-                  alt="meal"
-                />
-              </Link>
+            <div
+              key={ `${strDrink}${index}` }
+              data-testid={ `${index}-recipe-card` }
+              className="container-recipe"  
+            >
+              <div className="box">
+                <Link to={ `/drinks/${idDrink}` }>
+                  <img
+                    data-testid={ `${index}-card-img` }
+                    src={ strDrinkThumb }
+                    alt="drink"
+                  />
+                  <h2
+                    className="title-recipe"
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {strDrink}
+                  </h2>
+                </Link>
+              </div>
             </div>
           );
         })
@@ -88,15 +99,26 @@ function Recipes() {
         filterFetch.dataValue.drinks.slice(0, NUMBER12).map((meal, index) => {
           const { strDrink, strDrinkThumb, idDrink } = meal;
           return (
-            <div key={ `${strDrink}${index}` } data-testid={ `${index}-recipe-card` }>
-              <Link to={ `/drinks/${idDrink}` }>
-                <h2 data-testid={ `${index}-card-name` }>{strDrink}</h2>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ strDrinkThumb }
-                  alt="meal"
-                />
-              </Link>
+            <div
+              key={ `${strDrink}${index}` }
+              data-testid={ `${index}-recipe-card` }
+              className="container-recipe"
+            >
+              <div className="box">
+                <Link to={ `/drinks/${idDrink}` }>
+                  <img
+                    data-testid={ `${index}-card-img` }
+                    src={ strDrinkThumb }
+                    alt="meal"
+                  />
+                  <h2
+                    data-testid={ `${index}-card-name` }
+                    className="title-recipe"
+                  >
+                    {strDrink}
+                  </h2>
+                </Link>
+              </div>
             </div>
           );
         })
