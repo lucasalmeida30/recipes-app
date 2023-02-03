@@ -1,3 +1,11 @@
+@import 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+@import 'https://fonts.googleapis.com/css2?family=Epilogue:wght@200&display=swap';
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .card-recipe {
     width: 294px;
     border: 0.517989px solid #B1B1B1;
@@ -6,12 +14,18 @@
     margin-top: 15px;
 }
 
+.box {
+  margin: 10px;
+  font-family: Epilogue, sans-serif;
+}
+
 .recipe-main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
 }
 
 .container-recipe {
@@ -32,11 +46,10 @@
   font-family: ' Epilogue' , sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 12px;
   color: #1A1B1C;
-  margin-left: 12px;
-  margin-top: 8px;
+  margin-top: 15px;
 }
 
 .link-title {
